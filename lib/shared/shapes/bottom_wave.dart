@@ -1,44 +1,44 @@
-import 'dart:ui';
-import 'dart:math' as math;
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class BottomWave
- extends CustomPainter {
+class BottomWave extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawPaint(Paint()..color = Colors.white);
-
     Path bezierPath = Path()
-      ..lineTo(0, size.height * 0.5)
-      ..quadraticBezierTo(
-        size.width * 0.20,
-        size.height * 0.31,
-        size.width * 0.39,
-        size.height * 0.48,
+      ..moveTo(0, size.height)
+      ..lineTo(0, size.height * 0.8)
+      ..cubicTo(
+        size.width * 0.27,
+        size.height * 0.81,
+        size.width * 0.13,
+        size.height * 0.97,
+        size.width * 0.29,
+        size.height * 0.95,
       )
-      ..quadraticBezierTo(
-        size.width * 0.55,
-        size.height * 0.63,
-        size.width * 0.70,
-        size.height * 0.40,
+      ..cubicTo(
+        size.width * 0.41,
+        size.height * 0.95,
+        size.width * 0.53,
+        size.height * 0.79,
+        size.width * 0.69,
+        size.height * 0.89,
       )
-      ..quadraticBezierTo(
-        size.width * 0.80,
-        size.height * 0.27,
+      ..cubicTo(
+        size.width * 0.790,
+        size.height * 0.99,
+        size.width * 0.87,
+        size.height * 0.95,
         size.width,
-        size.height * 0.55,
+        size.height * 0.8,
       )
-      ..lineTo(size.width, 0);
+      ..lineTo(size.width, size.height);
 
     final bezierPaint = Paint()
       ..shader = LinearGradient(
-        begin: Alignment.bottomCenter,
-        end: Alignment.topCenter,
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
         tileMode: TileMode.clamp,
-        colors: [Colors.redAccent[400]!, Colors.grey[300]!],
-      ).createShader(Offset(0, -(size.height / 4)) & size);
+        colors: [Colors.redAccent[400]!, Colors.grey[100]!],
+      ).createShader(Offset(0, size.height - 100) & size);
 
     canvas.drawPath(bezierPath, bezierPaint);
   }
@@ -46,6 +46,6 @@ class BottomWave
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     // TODO: implement shouldRepaint
-    return false;
+    return true;
   }
 }

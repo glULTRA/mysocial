@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 class Wave extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawPaint(Paint()..color = Colors.white);
-
     Path bezierPath = Path()
       ..lineTo(0, size.height * 0.5)
       ..quadraticBezierTo(
@@ -45,6 +43,6 @@ class Wave extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     // TODO: implement shouldRepaint
-    return false;
+    return true;
   }
 }
