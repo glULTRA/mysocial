@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:mysocial/shared/shapes/Circle.dart';
+import 'package:mysocial/shared/shapes/bottom_wave.dart';
+import 'package:mysocial/shared/shapes/circle.dart';
+import 'package:mysocial/shared/shapes/wave.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -19,47 +21,34 @@ class _LoginState extends State<Login> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.all(50.0),
-          child: Column(
+          child: Stack(
             children: [
-              SizedBox(height: 100.0),
               Opacity(
-                opacity: 0.5,
+                opacity: 0.99,
                 child: CustomPaint(
-                  painter: Circle(
-                    radius: radius,
-                    stroke: stroke,
+                  painter: Wave(),
+                  child: Container(
+                    height: 230,
                   ),
-                  child: Container(),
                 ),
               ),
-              SizedBox(height: 100.0),
-              Slider(
-                value: radius,
-                min: 10,
-                max: 100,
-                activeColor: Colors.amber[300],
-                inactiveColor: Colors.amber[300],
-                onChanged: (value) {
-                  setState(() {
-                    radius = value;
-                  });
-                },
-                label: "Radius",
+              Opacity(
+                opacity: 0.772,
+                child: CustomPaint(
+                  painter: Wave(),
+                  child: Container(
+                    height: 400,
+                  ),
+                ),
               ),
-              SizedBox(height: 100.0),
-              Slider(
-                value: stroke,
-                min: 1.0,
-                max: 10.0,
-                activeColor: Colors.red[300],
-                inactiveColor: Colors.red[300],
-                onChanged: (value) {
-                  setState(() {
-                    stroke = value;
-                  });
-                },
-                label: "Stroke",
+              Opacity(
+                opacity: 0.272,
+                child: CustomPaint(
+                  painter: BottomWave(),
+                  child: Container(
+                    height: 900,
+                  ),
+                ),
               ),
             ],
           ),
