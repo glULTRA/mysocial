@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -15,6 +17,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  bool isAgree = false;
   @override
   Widget build(BuildContext context) {
     Size device_size = MediaQuery.of(context).size;
@@ -83,6 +86,85 @@ class _RegisterState extends State<Register> {
                             placeholder: "Email Address",
                             icon: null,
                             textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 10.0),
+                          ContainerTextInputShadow(
+                            obscureText: true,
+                            placeholder: "Password",
+                            icon: null,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 10.0),
+                          Row(
+                            children: [
+                              SizedBox(width: 20.0),
+                              Checkbox(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                side: MaterialStateBorderSide.resolveWith(
+                                  (states) =>
+                                      BorderSide(width: 1.0, color: Colors.red),
+                                ),
+                                value: this.isAgree,
+                                onChanged: (value) {
+                                  setState(() {
+                                    this.isAgree = value!;
+                                  });
+                                },
+                                activeColor: Colors.pink,
+                                checkColor: Colors.white,
+                              ),
+                              SizedBox(width: 10.0),
+                              Text(
+                                "Agree to",
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Terms & Conditions.",
+                                  style: TextStyle(
+                                    color: Colors.pink[500],
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 40.0),
+                          RaisedButton(
+                            onPressed: () {},
+                            color: Colors.pink[500],
+                            elevation: 0.0,
+                            padding: EdgeInsets.only(
+                              left: 45.0,
+                              right: 45.0,
+                              top: 13.0,
+                              bottom: 13.0,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14.0),
+                            ),
+                            child: Text(
+                              "Sign up",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17.0,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              "I'm already a member",
+                              style: TextStyle(
+                                color: Colors.pink[500],
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ],
                       ),

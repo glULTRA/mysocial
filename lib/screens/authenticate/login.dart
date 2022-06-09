@@ -97,6 +97,7 @@ class _LoginState extends State<Login> {
                             ),
                             SizedBox(height: 30.0),
                             ContainerTextInputShadow(
+                              obscureText: true,
                               placeholder: "Password",
                               icon: Icons.lock_outline,
                             ),

@@ -4,7 +4,8 @@ import 'package:mysocial/shared/forms/textInputDecoration.dart';
 Container ContainerTextInputShadow({
   required String ?placeholder,
   required IconData ?icon,
-  TextAlign textAlign = TextAlign.start
+  TextAlign textAlign = TextAlign.start,
+  bool obscureText = false,
 }) =>
     Container(
       decoration: BoxDecoration(
@@ -20,6 +21,7 @@ Container ContainerTextInputShadow({
         ],
       ),
       child: TextFormField(
+        obscureText: obscureText,
         textAlign: textAlign,
         decoration: textInputDecoration(
           icon: icon,
