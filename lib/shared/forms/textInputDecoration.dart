@@ -8,7 +8,6 @@ InputDecoration textInputDecoration({
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20.0),
         borderSide: const BorderSide(
-          color: Colors.redAccent,
           width: 2.0,
         ),
       ),
@@ -20,6 +19,24 @@ InputDecoration textInputDecoration({
           width: 10.0,
         ),
         borderRadius: BorderRadius.circular(20.0),
+      ),
+      errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20.0),
+          borderSide: BorderSide(
+            color: Colors.transparent,
+          )),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20.0),
+        borderSide: BorderSide(color: Colors.transparent),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20.0),
+        borderSide: BorderSide(color: Colors.transparent),
+      ),
+      errorStyle: TextStyle(
+        color: Colors.red[400],
+        fontWeight: FontWeight.normal,
+        fontSize: 13,
       ),
       hintText: placeholder,
       hintStyle: TextStyle(color: Colors.grey[500]),
