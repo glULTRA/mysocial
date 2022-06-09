@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 InputDecoration textInputDecoration({
-  required icon,
-  required placeholder,
+  required IconData? icon,
+  required String? placeholder,
 }) =>
     InputDecoration(
       border: OutlineInputBorder(

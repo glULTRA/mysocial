@@ -37,8 +37,8 @@ class BottomWave extends CustomPainter {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         tileMode: TileMode.clamp,
-        colors: [Colors.redAccent[400]!, Colors.grey[100]!],
-      ).createShader(Offset(0, size.height - 100) & size);
+        colors: [Colors.redAccent[400]!, Colors.grey[300]!],
+      ).createShader(Offset(0, (size.height * 0.9)) & size);
 
     canvas.drawPath(bezierPath, bezierPaint);
   }
