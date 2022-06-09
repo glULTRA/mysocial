@@ -8,13 +8,13 @@ import 'package:firebase_core/firebase_core.dart';
 dynamic main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-      //options: FirebaseOptions(
-      //  apiKey: "XXX",
-      //  appId: "XXX",
-      //  messagingSenderId: "XXX",
-      //  projectId: "XXX",
-      //),
-      );
+    options: FirebaseOptions(
+      apiKey: "XXX",
+      appId: "XXX",
+      messagingSenderId: "XXX",
+      projectId: "XXX",
+    ),
+  );
   runApp(MyApp());
 }
 

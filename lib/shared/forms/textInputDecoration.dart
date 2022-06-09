@@ -15,7 +15,7 @@ InputDecoration textInputDecoration({
       filled: true,
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.white,
+          color: Colors.transparent,
           width: 10.0,
         ),
         borderRadius: BorderRadius.circular(20.0),
@@ -37,6 +37,10 @@ InputDecoration textInputDecoration({
         color: Colors.red[400],
         fontWeight: FontWeight.normal,
         fontSize: 13,
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20.0),
+        borderSide: BorderSide(color: Colors.transparent),
       ),
       hintText: placeholder,
       hintStyle: TextStyle(color: Colors.grey[500]),
