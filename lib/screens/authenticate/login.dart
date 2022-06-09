@@ -9,6 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:mysocial/screens/authenticate/register.dart';
+import 'package:mysocial/screens/home/home.dart';
+import 'package:mysocial/shared/Animations/page_route_animation.dart';
 import 'package:mysocial/shared/forms/containerTextInputShadow.dart';
 import 'package:mysocial/shared/forms/textInputDecoration.dart';
 import 'package:mysocial/shared/shapes/bottom_wave.dart';
@@ -203,10 +205,13 @@ class _LoginState extends State<Login> {
                             const Text("or"),
                             TextButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Register()));
+                                Navigator.of(context).push(
+                                  page_route_animated(
+                                    pageBuilder: (context, animation,
+                                            secondaryAnimation) =>
+                                        const Register(),
+                                  ),
+                                );
                               },
                               autofocus: true,
                               child: Text(
