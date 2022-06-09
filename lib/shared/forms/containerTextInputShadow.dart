@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mysocial/shared/forms/textInputDecoration.dart';
 
-Container ContainerTextInputShadow({
-  required String ?placeholder,
-  required IconData ?icon,
-  TextAlign textAlign = TextAlign.start,
-  bool obscureText = false,
-}) =>
+Container ContainerTextInputShadow(
+        {required String? placeholder,
+        required IconData? icon,
+        TextAlign textAlign = TextAlign.start,
+        bool obscureText = false,
+        TextEditingController? controller}) =>
     Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -23,6 +23,7 @@ Container ContainerTextInputShadow({
       child: TextFormField(
         obscureText: obscureText,
         textAlign: textAlign,
+        controller: controller,
         decoration: textInputDecoration(
           icon: icon,
           placeholder: placeholder,

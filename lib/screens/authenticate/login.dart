@@ -6,6 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_signin_button/button_list.dart';
+import 'package:flutter_signin_button/button_view.dart';
 import 'package:mysocial/screens/authenticate/register.dart';
 import 'package:mysocial/shared/forms/containerTextInputShadow.dart';
 import 'package:mysocial/shared/forms/textInputDecoration.dart';
@@ -24,6 +26,10 @@ class _LoginState extends State<Login> {
   var radius = 10.0;
   var stroke = 2.0;
   var value = false;
+
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size device_size = MediaQuery.of(context).size;
@@ -71,7 +77,7 @@ class _LoginState extends State<Login> {
                   ),
                   Center(
                     child: Container(
-                      padding: EdgeInsets.only(top: 230, left: 35, right: 35),
+                      padding: EdgeInsets.only(top: 210, left: 35, right: 35),
                       child: Center(
                         child: Column(
                           children: [
@@ -90,16 +96,18 @@ class _LoginState extends State<Login> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 30.0),
+                            SizedBox(height: 27.0),
                             ContainerTextInputShadow(
                               placeholder: "Username",
                               icon: Icons.person_outline,
+                              controller: username,
                             ),
                             SizedBox(height: 30.0),
                             ContainerTextInputShadow(
                               obscureText: true,
                               placeholder: "Password",
                               icon: Icons.lock_outline,
+                              controller: password,
                             ),
                             SizedBox(
                               height: 10.0,
@@ -141,26 +149,55 @@ class _LoginState extends State<Login> {
                                 ),
                               ],
                             ),
-                            RaisedButton(
-                              onPressed: () {},
-                              color: Colors.pink[500],
-                              elevation: 0.0,
-                              padding: EdgeInsets.only(
-                                left: 45.0,
-                                right: 45.0,
-                                top: 13.0,
-                                bottom: 13.0,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14.0),
-                              ),
-                              child: Text(
-                                "Sign in",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17.0,
+                            SizedBox(height: 20.0),
+                            Row(
+                              children: [
+                                SizedBox(width: 40.0),
+                                SignInButton(
+                                  Buttons.Facebook,
+                                  mini: true,
+                                  elevation: 10.0,
+                                  onPressed: () {},
                                 ),
-                              ),
+                                RaisedButton(
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text("helloworld"),
+                                          content: Text(
+                                              "username : ${username.text}\npassword : ${password.text}"),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  color: Colors.pink[500],
+                                  elevation: 10.0,
+                                  padding: EdgeInsets.only(
+                                    left: 45.0,
+                                    right: 45.0,
+                                    top: 13.0,
+                                    bottom: 13.0,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(14.0),
+                                  ),
+                                  child: Text(
+                                    "Sign in",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17.0,
+                                    ),
+                                  ),
+                                ),
+                                SignInButton(
+                                  Buttons.GitHub,
+                                  mini: true,
+                                  elevation: 10.0,
+                                  onPressed: () {},
+                                ),
+                              ],
                             ),
                             const SizedBox(height: 4.0),
                             const Text("or"),

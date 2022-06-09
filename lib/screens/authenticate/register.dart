@@ -1,13 +1,10 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:mysocial/shared/forms/containerTextInputShadow.dart';
-import 'package:mysocial/shared/forms/textInputDecoration.dart';
 import 'package:mysocial/shared/shapes/bottom_wave.dart';
 import 'package:mysocial/shared/shapes/wave.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -28,7 +25,6 @@ class _RegisterState extends State<Register> {
         body: ListView.builder(
           addRepaintBoundaries: false,
           itemCount: 1,
-          reverse: false,
           itemBuilder: ((context, index) => Stack(
                 children: [
                   Opacity(
@@ -55,7 +51,7 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   Opacity(
-                    opacity: 0.50,
+                    opacity: 0.60,
                     child: Container(
                       height: device_size.height,
                       child: CustomPaint(
@@ -67,9 +63,25 @@ class _RegisterState extends State<Register> {
                   Center(
                     child: Container(
                       padding:
-                          EdgeInsets.only(top: 200, left: 45.0, right: 45.0),
+                          EdgeInsets.only(top: 190, left: 45.0, right: 45.0),
                       child: Column(
                         children: [
+                          Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Icon(Icons.music_note),
+                              Text(
+                                "  Mega Music",
+                                style: TextStyle(
+                                  color: Colors.pink[500],
+                                  fontSize: 25.0,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 2.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 30.0),
                           ContainerTextInputShadow(
                             placeholder: "Username",
                             icon: null,
@@ -97,14 +109,14 @@ class _RegisterState extends State<Register> {
                           SizedBox(height: 10.0),
                           Row(
                             children: [
-                              SizedBox(width: 20.0),
+                              SizedBox(width: 30.0),
                               Checkbox(
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderRadius: BorderRadius.circular(7.0),
                                 ),
                                 side: MaterialStateBorderSide.resolveWith(
-                                  (states) =>
-                                      BorderSide(width: 1.0, color: Colors.red),
+                                  (states) => BorderSide(
+                                      width: 1.0, color: Colors.pink),
                                 ),
                                 value: this.isAgree,
                                 onChanged: (value) {
@@ -115,7 +127,6 @@ class _RegisterState extends State<Register> {
                                 activeColor: Colors.pink,
                                 checkColor: Colors.white,
                               ),
-                              SizedBox(width: 10.0),
                               Text(
                                 "Agree to",
                               ),
@@ -131,27 +142,44 @@ class _RegisterState extends State<Register> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 40.0),
-                          RaisedButton(
-                            onPressed: () {},
-                            color: Colors.pink[500],
-                            elevation: 0.0,
-                            padding: EdgeInsets.only(
-                              left: 45.0,
-                              right: 45.0,
-                              top: 13.0,
-                              bottom: 13.0,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14.0),
-                            ),
-                            child: Text(
-                              "Sign up",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17.0,
+                          SizedBox(height: 10.0),
+                          Row(
+                            children: [
+                              SizedBox(width: 25.0),
+                              SignInButton(
+                                Buttons.Facebook,
+                                mini: true,
+                                elevation: 10.0,
+                                onPressed: () {},
                               ),
-                            ),
+                              RaisedButton(
+                                onPressed: () {},
+                                color: Colors.pink[500],
+                                elevation: 10.0,
+                                padding: EdgeInsets.only(
+                                  left: 45.0,
+                                  right: 45.0,
+                                  top: 13.0,
+                                  bottom: 13.0,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(14.0),
+                                ),
+                                child: Text(
+                                  "Sign up",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17.0,
+                                  ),
+                                ),
+                              ),
+                              SignInButton(
+                                Buttons.GitHub,
+                                mini: true,
+                                elevation: 10.0,
+                                onPressed: () {},
+                              ),
+                            ],
                           ),
                           SizedBox(height: 5.0),
                           TextButton(
