@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   Opacity(
-                    opacity: 0.670,
+                    opacity: 0.750,
                     alwaysIncludeSemantics: true,
                     child: Container(
                       height: 320,
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   Opacity(
-                    opacity: 0.60,
+                    opacity: 0.80,
                     child: Container(
                       height: device_size.height,
                       child: CustomPaint(

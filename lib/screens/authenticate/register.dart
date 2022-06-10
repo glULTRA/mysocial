@@ -63,7 +63,7 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                       Opacity(
-                        opacity: 0.670,
+                        opacity: 0.750,
                         alwaysIncludeSemantics: true,
                         child: Container(
                           height: 320,
@@ -74,7 +74,7 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                       Opacity(
-                        opacity: 0.60,
+                        opacity: 0.80,
                         child: Container(
                           height: isValidate
                               ? device_size.height
@@ -186,7 +186,7 @@ class _RegisterState extends State<Register> {
                                             checkColor: Colors.white,
                                           ),
                                           Text(
-                                            "Agree to",
+                                            "I Agree to",
                                           ),
                                           TextButton(
                                             onPressed: () {
