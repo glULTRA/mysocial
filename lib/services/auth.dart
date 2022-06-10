@@ -62,6 +62,15 @@ class AuthService {
   // Sign in with Facebook.
   // Sign in with Github.
 
+  // Sign out.
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      return null;
+    }
+  }
+
   // Check if user is exist.
   //Bool isUsernameExist(String username) async {
   //  try {
