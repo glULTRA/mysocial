@@ -33,16 +33,38 @@ class _LoginState extends State<Login> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
-  TextEditingController username = TextEditingController();
+  TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     Size device_size = MediaQuery.of(context).size;
+    print("Back to login");
     return loading
         ? Loading()
         : SafeArea(
             child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.pink[400],
+                elevation: 0.0,
+                title: Text('Sign in'),
+                actions: <Widget>[
+                  FlatButton.icon(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Register()));
+                    },
+                    icon: Icon(
+                      Icons.switch_account_rounded,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      "Register",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
               backgroundColor: Color.fromARGB(255, 235, 246, 252),
               body: ListView.builder(
                 addRepaintBoundaries: false,
@@ -111,7 +133,7 @@ class _LoginState extends State<Login> {
                                   ContainerTextInputShadow(
                                     placeholder: "Username",
                                     icon: Icons.person_outline,
-                                    controller: username,
+                                    controller: email,
                                   ),
                                   SizedBox(height: 30.0),
                                   ContainerTextInputShadow(
@@ -174,17 +196,32 @@ class _LoginState extends State<Login> {
                                         onPressed: () {},
                                       ),
                                       RaisedButton(
-                                        onPressed: () {
+                                        onPressed: () async {
                                           showDialog(
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
                                                 title: Text("helloworld"),
                                                 content: Text(
-                                                    "username : ${username.text}\npassword : ${password.text}"),
+                                                    "username : ${email.text}\npassword : ${password.text}"),
                                               );
                                             },
                                           );
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            setState(() => loading = true);
+                                            dynamic result = await _auth
+                                                .signInWithEmailAndPassword(
+                                                    email: email.text,
+                                                    password: password.text);
+                                            if (result == null) {
+                                              setState(() {
+                                                // error =
+                                                //    "Email or password is wrong!";
+                                                loading = false;
+                                              });
+                                            }
+                                          }
                                         },
                                         color: Colors.pink[500],
                                         elevation: 10.0,
@@ -218,13 +255,19 @@ class _LoginState extends State<Login> {
                                   const Text("or"),
                                   TextButton(
                                     onPressed: () {
-                                      Navigator.of(context).push(
-                                        page_route_animated(
-                                          pageBuilder: (context, animation,
-                                                  secondaryAnimation) =>
-                                              const Register(),
-                                        ),
-                                      );
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Register()));
+                                      //Navigator.of(context).push(
+                                      //  page_route_animated(
+                                      //    pageBuilder: (context, animation,
+                                      //            secondaryAnimation) =>
+                                      //        const Register(),
+                                      //
+                                      //  ),
+                                      //);
                                     },
                                     autofocus: true,
                                     child: Text(

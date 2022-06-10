@@ -5,7 +5,7 @@ import 'package:mysocial/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-dynamic main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Options are for web.
   await Firebase.initializeApp(
@@ -17,7 +17,7 @@ dynamic main() async {
       projectId: "mysocial-c3703",
     ),
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {

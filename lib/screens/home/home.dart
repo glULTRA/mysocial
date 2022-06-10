@@ -16,6 +16,7 @@ class _HomeState extends State<Home> {
   AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
+    print("Am i here ?");
     return Scaffold(
       appBar: AppBar(
         actions: [

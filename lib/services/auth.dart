@@ -13,7 +13,9 @@ class AuthService {
 
   // Authentication change user stream.
   Stream<MegaUser?> get user {
-    return _auth.authStateChanges().map(_userFromFireBase);
+    return _auth
+        .authStateChanges()
+        .map((User? user) => _userFromFireBase(user)!);
   }
 
   // <---------Register--------->

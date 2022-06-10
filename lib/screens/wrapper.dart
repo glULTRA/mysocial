@@ -9,7 +9,13 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<MegaUser?>(context);
-    return user == null ? Authenticate() : Home();
+    print("back to wrapper");
+
+    try {
+      final user = Provider.of<MegaUser?>(context);
+      return user == null ? Authenticate() : Home();
+    } catch (e) {
+      return Authenticate();
+    }
   }
 }

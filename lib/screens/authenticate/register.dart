@@ -259,13 +259,11 @@ class _RegisterState extends State<Register> {
                                             onPressed: () async {
                                               if (_formKey.currentState!
                                                   .validate()) {
-                                                setState(() {
-                                                  loading = true;
-                                                });
+                                                setState(() => loading = true);
                                                 if (!isAgree) {
                                                   setState(() {
                                                     mustBeAgree = true;
-                                                    isValidate = true;
+                                                    isValidate = false;
                                                     loading = false;
                                                   });
                                                 } else {
@@ -284,7 +282,8 @@ class _RegisterState extends State<Register> {
                                                       loading = false;
                                                     });
                                                   } else {
-                                                    Navigator.pop(context);
+                                                    print("Should get back!");
+                                                    Navigator.of(context);
                                                   }
                                                 }
                                               } else {
