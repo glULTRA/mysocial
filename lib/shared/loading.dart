@@ -6,14 +6,12 @@ class Loading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.pink[50],
-      body: Container(
-        child: Center(
-          child: SpinKitSpinningLines(
-            color: Colors.black,
-            duration: Duration(seconds: 5),
-          ),
+    return Center(
+      child: Container(
+        padding: EdgeInsets.only(top: 300),
+        child: SpinKitSpinningLines(
+          color: Colors.black,
+          duration: Duration(seconds: 5),
         ),
       ),
     );
