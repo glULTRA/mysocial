@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -293,11 +294,20 @@ class _RegisterState extends State<Register> {
                                             ),
                                           ),
                                           Expanded(flex: 1, child: SizedBox()),
-                                          SignInButton(
-                                            Buttons.GitHub,
-                                            mini: true,
-                                            elevation: 10.0,
-                                            onPressed: () {},
+                                          IconButton(
+                                            icon: Icon(
+                                              EvaIcons.email,
+                                              color: Colors.red,
+                                              size: 40,
+                                            ),
+                                            onPressed: () async {
+                                              //await _auth
+                                              //    .signInWithGitHub(context);
+                                              final navigator =
+                                                  Navigator.of(context);
+                                              await _auth.signInWithGoogle();
+                                              navigator.pop();
+                                            },
                                           ),
                                           Expanded(flex: 3, child: SizedBox()),
                                         ],

@@ -12,7 +12,7 @@ class Loading extends StatelessWidget {
         child: Center(
           child: SpinKitSpinningLines(
             size: 100,
-            itemCount: 30,
+            itemCount: 15,
             color: Colors.amber,
             duration: Duration(seconds: 5),
           ),

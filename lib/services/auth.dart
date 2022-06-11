@@ -1,4 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mysocial/models/user.dart';
 
 class AuthService {
@@ -45,9 +48,14 @@ class AuthService {
 
   // Facebool Register.
   // Github Register.
+
+  Future signInWithGitHub(BuildContext context) async {
+    try {} catch (e) {}
+  }
+
   // <---------SignIn--------->
   // Sign in with email/username and password.
-  Future signInWithEmailAndPassword({
+  Future<MegaUser?> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -61,11 +69,63 @@ class AuthService {
       return null;
     }
   }
+
   // Sign in with Facebook.
   // Sign in with Github.
+  // Sign in with Gmail.
+  Future signInWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      final UserCredential result =
+          await _auth.signInWithCredential(credential);
+
+      // Once signed in, return the UserCredential
+
+      return _userFromFireBase(result.user);
+    } catch (e) {
+      print("Error::Register::Google::$e");
+      throw MissingPluginException("What");
+    }
+  }
+  // Future signInWithGithub() async {
+  //   try {
+  //     String accessToken = '...'; // From 3rd party provider
+  //     var githubAuthCredential = GithubAuthProvider.credential(accessToken);
+
+  //     return await FirebaseAuth.instance
+  //         .signInWithCredential(githubAuthCredential);
+  //   } catch (e) {
+  //     print("Error::Login::Github::$e");
+
+  //     return null;
+  //   }
+  // }
 
   // Sign out.
   Future signOut() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signOut();
+
+      return await _auth.signOut();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Sign out.
+  Future signOutGoogle() async {
     try {
       return await _auth.signOut();
     } catch (e) {

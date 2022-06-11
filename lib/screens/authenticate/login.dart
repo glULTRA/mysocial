@@ -1,9 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
+import 'package:mysocial/models/user.dart';
 import 'package:mysocial/screens/authenticate/register.dart';
 import 'package:mysocial/services/auth.dart';
 import 'package:mysocial/shared/Animations/page_route_animation.dart';
@@ -192,7 +194,7 @@ class _LoginState extends State<Login> {
                                         Buttons.Facebook,
                                         mini: true,
                                         elevation: 10.0,
-                                        onPressed: () {},
+                                        onPressed: () async {},
                                       ),
                                       Expanded(flex: 1, child: SizedBox()),
                                       RaisedButton(
@@ -221,11 +223,38 @@ class _LoginState extends State<Login> {
                                       ),
                                       Expanded(
                                           flex: 1, child: SizedBox(width: 10)),
-                                      SignInButton(
-                                        Buttons.GitHub,
-                                        mini: true,
-                                        elevation: 10.0,
-                                        onPressed: () {},
+                                      IconButton(
+                                        icon: Icon(
+                                          EvaIcons.email,
+                                          size: 40,
+                                          color: Colors.red,
+                                        ),
+                                        onPressed: () async {
+                                          MegaUser result = MegaUser();
+                                          try {
+                                            setState(() {
+                                              loading = true;
+                                            });
+                                            result =
+                                                await _auth.signInWithGoogle();
+                                          } catch (e) {
+                                            setState(() {
+                                              loading = false;
+                                            });
+                                          }
+
+                                          if (!result.uid.isEmpty) {
+                                            print("AM i here sir? ");
+                                            await EasyLoading.showSuccess(
+                                                'Logged in Successfully!');
+                                          } else {
+                                            setState(() {
+                                              loading = false;
+                                            });
+                                            EasyLoading.showSuccess(
+                                                'None account chosen!');
+                                          }
+                                        },
                                       ),
                                       Expanded(flex: 3, child: SizedBox()),
                                     ],
@@ -234,18 +263,18 @@ class _LoginState extends State<Login> {
                                   const Text("or"),
                                   TextButton(
                                     onPressed: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             Register()));
-                                      Navigator.of(context).push(
-                                        page_route_animated(
-                                          pageBuilder: (context, animation,
-                                                  secondaryAnimation) =>
-                                              const Register(),
-                                        ),
-                                      );
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Register()));
+                                      //Navigator.of(context).push(
+                                      //  page_route_animated(
+                                      //    pageBuilder: (context, animation,
+                                      //            secondaryAnimation) =>
+                                      //        const Register(),
+                                      //  ),
+                                      //);
                                     },
                                     autofocus: true,
                                     child: Text(
