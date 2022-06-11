@@ -13,8 +13,10 @@ class Wrapper extends StatelessWidget {
 
     try {
       final user = Provider.of<MegaUser?>(context);
+      print(user);
       return user == null ? Authenticate() : Home();
     } catch (e) {
+      print("Why dude ? : ${e.toString()}");
       return Authenticate();
     }
   }

@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mysocial/certs/terms_and_conditions.dart';
 import 'package:mysocial/models/user.dart';
+import 'package:mysocial/screens/authenticate/login.dart';
+import 'package:mysocial/screens/home/home.dart';
 import 'package:mysocial/services/auth.dart';
 import 'package:mysocial/shared/forms/containerTextInputShadow.dart';
 import 'package:mysocial/shared/loading.dart';
@@ -257,6 +259,8 @@ class _RegisterState extends State<Register> {
                                           ),
                                           RaisedButton(
                                             onPressed: () async {
+                                              final navigator = Navigator.of(
+                                                  context); // store the Navigator
                                               if (_formKey.currentState!
                                                   .validate()) {
                                                 setState(() => loading = true);
@@ -283,7 +287,8 @@ class _RegisterState extends State<Register> {
                                                     });
                                                   } else {
                                                     print("Should get back!");
-                                                    Navigator.of(context);
+
+                                                    navigator.pop();
                                                   }
                                                 }
                                               } else {
@@ -322,8 +327,12 @@ class _RegisterState extends State<Register> {
                                       ),
                                       SizedBox(height: 5.0),
                                       TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
+                                        onPressed: () async {
+                                          await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => Login(),
+                                              ));
                                         },
                                         child: Text(
                                           "I'm already a member",

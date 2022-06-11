@@ -2,7 +2,7 @@
 
 class MegaUser {
   final String uid;
-  MegaUser({required this.uid});
+  MegaUser({this.uid = ''});
 }
 
 class MegaUserData {

@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
         actions: [
           FlatButton(
             onPressed: () async {
-              _auth.signOut();
+              await _auth.signOut();
             },
             child: Text("Sign out"),
           )
