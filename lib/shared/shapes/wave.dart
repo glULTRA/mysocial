@@ -34,7 +34,7 @@ class Wave extends CustomPainter {
         begin: Alignment.bottomCenter,
         end: Alignment.topCenter,
         tileMode: TileMode.clamp,
-        colors: [Colors.redAccent[400]!, Colors.grey[300]!],
+        colors: [Colors.lightGreen[600]!, Colors.grey[300]!],
       ).createShader(Offset(0, -(size.height * 0.38)) & size);
 
     canvas.drawPath(bezierPath, bezierPaint);

@@ -46,7 +46,7 @@ InputDecoration textInputDecoration({
       hintStyle: TextStyle(color: Colors.grey[500]),
       prefixIcon: Icon(
         icon,
-        color: Colors.pink[600],
+        color: Colors.lightGreen[600],
       ),
       contentPadding: const EdgeInsets.fromLTRB(
         20.0,

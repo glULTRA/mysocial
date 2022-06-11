@@ -1,24 +1,15 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:mysocial/screens/authenticate/register.dart';
-import 'package:mysocial/screens/home/home.dart';
 import 'package:mysocial/services/auth.dart';
 import 'package:mysocial/shared/Animations/page_route_animation.dart';
 import 'package:mysocial/shared/forms/containerTextInputShadow.dart';
-import 'package:mysocial/shared/forms/textInputDecoration.dart';
 import 'package:mysocial/shared/loading.dart';
 import 'package:mysocial/shared/shapes/bottom_wave.dart';
-import 'package:mysocial/shared/shapes/circle.dart';
 import 'package:mysocial/shared/shapes/wave.dart';
 
 class Login extends StatefulWidget {
@@ -52,7 +43,7 @@ class _LoginState extends State<Login> {
         : SafeArea(
             child: Scaffold(
               // appBar: AppBar(
-              //   backgroundColor: Colors.pink[400],
+              //   backgroundColor: Colors.green[400],
               //   elevation: 0.0,
               //   title: Text('Sign in'),
               //   actions: <Widget>[
@@ -128,7 +119,7 @@ class _LoginState extends State<Login> {
                                       Text(
                                         "  Mega Music",
                                         style: TextStyle(
-                                          color: Colors.pink[500],
+                                          color: Colors.lightGreen[500],
                                           fontSize: 25.0,
                                           fontWeight: FontWeight.bold,
                                           letterSpacing: 2.0,
@@ -162,7 +153,7 @@ class _LoginState extends State<Login> {
                                         side:
                                             MaterialStateBorderSide.resolveWith(
                                           (states) => BorderSide(
-                                              width: 1.0, color: Colors.red),
+                                              width: 1.0, color: Colors.green),
                                         ),
                                         value: this.value,
                                         onChanged: (value) {
@@ -170,12 +161,13 @@ class _LoginState extends State<Login> {
                                             this.value = value!;
                                           });
                                         },
-                                        activeColor: Colors.pink,
+                                        activeColor: Colors.green,
                                         checkColor: Colors.white,
 
                                         // fillColor: Fill,
                                       ),
                                       Text("Remember me"),
+                                      // Making it responsive.
                                       Expanded(
                                         flex: 1,
                                         child: SizedBox(),
@@ -185,7 +177,7 @@ class _LoginState extends State<Login> {
                                         child: Text(
                                           "Forgot Password ?",
                                           style: TextStyle(
-                                            color: Colors.pink[500],
+                                            color: Colors.lightGreen[500],
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -207,7 +199,7 @@ class _LoginState extends State<Login> {
                                         onPressed: () async {
                                           auth_check_login(context);
                                         },
-                                        color: Colors.pink[500],
+                                        color: Colors.lightGreen[500],
                                         elevation: 10.0,
                                         padding: EdgeInsets.only(
                                           left: 45.0,
@@ -260,7 +252,7 @@ class _LoginState extends State<Login> {
                                       "Register now",
                                       style: TextStyle(
                                         decoration: TextDecoration.underline,
-                                        color: Colors.pink[500],
+                                        color: Colors.lightGreen[500],
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.bold,
                                       ),

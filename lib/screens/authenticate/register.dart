@@ -108,7 +108,7 @@ class _RegisterState extends State<Register> {
                                           Text(
                                             "  Mega Music",
                                             style: TextStyle(
-                                              color: Colors.pink[500],
+                                              color: Colors.lightGreen[500],
                                               fontSize: 25.0,
                                               fontWeight: FontWeight.bold,
                                               letterSpacing: 2.0,
@@ -199,7 +199,7 @@ class _RegisterState extends State<Register> {
                                                       .resolveWith(
                                                     (states) => BorderSide(
                                                         width: 1.0,
-                                                        color: Colors.pink),
+                                                        color: Colors.green),
                                                   ),
                                                   value: this.isAgree,
                                                   onChanged: (value) {
@@ -207,7 +207,7 @@ class _RegisterState extends State<Register> {
                                                       this.isAgree = value!;
                                                     });
                                                   },
-                                                  activeColor: Colors.pink,
+                                                  activeColor: Colors.green,
                                                   checkColor: Colors.white,
                                                 ),
                                                 Text(
@@ -272,7 +272,7 @@ class _RegisterState extends State<Register> {
                                             onPressed: () async {
                                               auth_check_register(context);
                                             },
-                                            color: Colors.pink[500],
+                                            color: Colors.lightGreen[500],
                                             elevation: 10.0,
                                             padding: EdgeInsets.only(
                                               left: 45.0,
@@ -314,7 +314,7 @@ class _RegisterState extends State<Register> {
                                         child: Text(
                                           "I'm already a member",
                                           style: TextStyle(
-                                            color: Colors.pink[500],
+                                            color: Colors.lightGreen[500],
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),

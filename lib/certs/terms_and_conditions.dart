@@ -37,7 +37,7 @@ void showTemrs(
         ),
         RaisedButton(
           onPressed: onPressed,
-          color: Colors.pink,
+          color: Colors.lightGreen,
           child: Text(
             "Agree",
             style: TextStyle(color: Colors.white),
