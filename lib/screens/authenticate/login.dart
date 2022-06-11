@@ -203,31 +203,7 @@ class _LoginState extends State<Login> {
                                       ),
                                       RaisedButton(
                                         onPressed: () async {
-                                          final navigator =
-                                              Navigator.of(context);
-
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            setState(() => loading = true);
-                                            dynamic result = await _auth
-                                                .signInWithEmailAndPassword(
-                                                    email: email.text,
-                                                    password: password.text);
-                                            if (result == null) {
-                                              setState(() => loading = false);
-                                              EasyLoading.showError(
-                                                  'Failed to login!');
-                                            } else {
-                                              EasyLoading.showSuccess(
-                                                  'Great Success!');
-
-                                              await Future.delayed(
-                                                  const Duration(seconds: 4),
-                                                  () {});
-
-                                              setState(() => loading = false);
-                                            }
-                                          }
+                                          auth_check_login(context);
                                         },
                                         color: Colors.pink[500],
                                         elevation: 10.0,
@@ -295,5 +271,26 @@ class _LoginState extends State<Login> {
               ),
             ),
           );
+  }
+
+  void auth_check_login(BuildContext context) async {
+    final navigator = Navigator.of(context);
+
+    if (_formKey.currentState!.validate()) {
+      setState(() => loading = true);
+      dynamic result = await _auth.signInWithEmailAndPassword(
+          email: email.text, password: password.text);
+      if (result == null) {
+        setState(() => loading = false);
+        EasyLoading.showError('Failed to login!');
+      } else {
+        //await EasyLoading.show(
+        //    status: "Loading");
+
+        EasyLoading.showSuccess('Logged in Successfully!');
+
+        setState(() => loading = false);
+      }
+    }
   }
 }

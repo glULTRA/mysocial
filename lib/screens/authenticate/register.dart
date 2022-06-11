@@ -261,44 +261,7 @@ class _RegisterState extends State<Register> {
                                           ),
                                           RaisedButton(
                                             onPressed: () async {
-                                              final navigator = Navigator.of(
-                                                  context); // store the Navigator
-                                              if (_formKey.currentState!
-                                                  .validate()) {
-                                                setState(() => loading = true);
-                                                if (!isAgree) {
-                                                  setState(() {
-                                                    mustBeAgree = true;
-                                                    isValidate = false;
-                                                    loading = false;
-                                                  });
-                                                } else {
-                                                  setState(() {
-                                                    isValidate = true;
-                                                    mustBeAgree = false;
-                                                  });
-                                                  dynamic result = await _auth
-                                                      .registerWithEmailAndPassword(
-                                                    email: email.text,
-                                                    password: password.text,
-                                                  );
-                                                  if (result == null) {
-                                                    // show the error.
-                                                    setState(() {
-                                                      loading = false;
-                                                    });
-                                                  } else {
-                                                    print("Should get back!");
-                                                    EasyLoading.showSuccess(
-                                                        "Registered Successful!");
-                                                    navigator.pop();
-                                                  }
-                                                }
-                                              } else {
-                                                setState(() {
-                                                  isValidate = false;
-                                                });
-                                              }
+                                              auth_check_register(context);
                                             },
                                             color: Colors.pink[500],
                                             elevation: 10.0,
@@ -357,5 +320,42 @@ class _RegisterState extends State<Register> {
               ),
             ),
           );
+  }
+
+  void auth_check_register(BuildContext context) async {
+    final navigator = Navigator.of(context); // store the Navigator
+    if (_formKey.currentState!.validate()) {
+      setState(() => loading = true);
+      if (!isAgree) {
+        setState(() {
+          mustBeAgree = true;
+          isValidate = false;
+          loading = false;
+        });
+      } else {
+        setState(() {
+          isValidate = true;
+          mustBeAgree = false;
+        });
+        dynamic result = await _auth.registerWithEmailAndPassword(
+          email: email.text,
+          password: password.text,
+        );
+        if (result == null) {
+          // show the error.
+          setState(() {
+            loading = false;
+          });
+        } else {
+          print("Should get back!");
+          EasyLoading.showSuccess("Registered Successful!");
+          navigator.pop();
+        }
+      }
+    } else {
+      setState(() {
+        isValidate = false;
+      });
+    }
   }
 }
