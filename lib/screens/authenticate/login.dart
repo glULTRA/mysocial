@@ -45,6 +45,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     Size device_size = MediaQuery.of(context).size;
+    print("width :${device_size.width}\nheight:${device_size.height}");
     print("Back to login");
     return loading
         ? Loading()
@@ -114,7 +115,7 @@ class _LoginState extends State<Login> {
                         Center(
                           child: Container(
                             padding:
-                                EdgeInsets.only(top: 210, left: 35, right: 35),
+                                EdgeInsets.only(top: 210, left: 45, right: 45),
                             child: Form(
                               key: _formKey,
                               child: Column(
@@ -153,39 +154,50 @@ class _LoginState extends State<Login> {
                                   ),
                                   Row(
                                     children: [
-                                      Checkbox(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(3.0),
-                                        ),
-                                        side:
-                                            MaterialStateBorderSide.resolveWith(
-                                          (states) => BorderSide(
-                                              width: 1.0, color: Colors.red),
-                                        ),
-                                        value: this.value,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            this.value = value!;
-                                          });
-                                        },
-                                        activeColor: Colors.pink,
-                                        checkColor: Colors.white,
+                                      Expanded(
+                                        flex: 2,
+                                        child: Wrap(
+                                          crossAxisAlignment:
+                                              WrapCrossAlignment.center,
+                                          children: [
+                                            Checkbox(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(3.0),
+                                              ),
+                                              side: MaterialStateBorderSide
+                                                  .resolveWith(
+                                                (states) => BorderSide(
+                                                    width: 1.0,
+                                                    color: Colors.red),
+                                              ),
+                                              value: this.value,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  this.value = value!;
+                                                });
+                                              },
+                                              activeColor: Colors.pink,
+                                              checkColor: Colors.white,
 
-                                        // fillColor: Fill,
+                                              // fillColor: Fill,
+                                            ),
+                                            Text("Remember me"),
+                                          ],
+                                        ),
                                       ),
-                                      Text("Remember me"),
                                       // Making it responsive
-                                      SizedBox(
-                                          width:
-                                              (device_size.width * 0.05) + 30),
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: Text(
-                                          "Forgot Password ?",
-                                          style: TextStyle(
-                                            color: Colors.pink[500],
-                                            fontWeight: FontWeight.bold,
+
+                                      Expanded(
+                                        flex: 1,
+                                        child: TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            "Forgot Password ?",
+                                            style: TextStyle(
+                                              color: Colors.pink[500],
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -194,13 +206,14 @@ class _LoginState extends State<Login> {
                                   SizedBox(height: 20.0),
                                   Row(
                                     children: [
-                                      SizedBox(width: 40.0),
+                                      Expanded(flex: 3, child: SizedBox()),
                                       SignInButton(
                                         Buttons.Facebook,
                                         mini: true,
                                         elevation: 10.0,
                                         onPressed: () {},
                                       ),
+                                      Expanded(flex: 1, child: SizedBox()),
                                       RaisedButton(
                                         onPressed: () async {
                                           auth_check_login(context);
@@ -225,12 +238,15 @@ class _LoginState extends State<Login> {
                                           ),
                                         ),
                                       ),
+                                      Expanded(
+                                          flex: 1, child: SizedBox(width: 10)),
                                       SignInButton(
                                         Buttons.GitHub,
                                         mini: true,
                                         elevation: 10.0,
                                         onPressed: () {},
                                       ),
+                                      Expanded(flex: 3, child: SizedBox()),
                                     ],
                                   ),
                                   const SizedBox(height: 4.0),

@@ -185,7 +185,10 @@ class _RegisterState extends State<Register> {
                                           children: [
                                             Row(
                                               children: [
-                                                SizedBox(width: 30.0),
+                                                Expanded(
+                                                    flex: 1,
+                                                    child:
+                                                        SizedBox(width: 30.0)),
                                                 Checkbox(
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
@@ -209,6 +212,7 @@ class _RegisterState extends State<Register> {
                                                 ),
                                                 Text(
                                                   "I Agree to",
+                                                  textAlign: TextAlign.center,
                                                 ),
                                                 TextButton(
                                                   onPressed: () {
@@ -235,6 +239,10 @@ class _RegisterState extends State<Register> {
                                                     ),
                                                   ),
                                                 ),
+                                                Expanded(
+                                                    flex: 1,
+                                                    child:
+                                                        SizedBox(width: 30.0)),
                                               ],
                                             ),
                                             Text(
@@ -252,13 +260,14 @@ class _RegisterState extends State<Register> {
                                       SizedBox(height: 10.0),
                                       Row(
                                         children: [
-                                          SizedBox(width: 25.0),
+                                          Expanded(flex: 3, child: SizedBox()),
                                           SignInButton(
                                             Buttons.Facebook,
                                             mini: true,
                                             elevation: 10.0,
                                             onPressed: () {},
                                           ),
+                                          Expanded(flex: 1, child: SizedBox()),
                                           RaisedButton(
                                             onPressed: () async {
                                               auth_check_register(context);
@@ -283,12 +292,14 @@ class _RegisterState extends State<Register> {
                                               ),
                                             ),
                                           ),
+                                          Expanded(flex: 1, child: SizedBox()),
                                           SignInButton(
                                             Buttons.GitHub,
                                             mini: true,
                                             elevation: 10.0,
                                             onPressed: () {},
                                           ),
+                                          Expanded(flex: 3, child: SizedBox()),
                                         ],
                                       ),
                                       SizedBox(height: 5.0),

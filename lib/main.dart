@@ -11,7 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Options are for web.
   await Firebase.initializeApp(
-    name: "mysocial",
+    // name: "mysocial",
     options: FirebaseOptions(
       apiKey: "AIzaSyBOGw6Ryp4_HDe94TKhcztkMAMQNu6xAwc",
       appId: "1:202413675237:android:d0c9688ae23f4798bb3a0c",
@@ -45,6 +45,9 @@ class _MyAppState extends State<MyApp> {
         // },
         debugShowCheckedModeBanner: false,
         // Return home or authenticate
+
+        theme: ThemeData(),
+
         home: Wrapper(),
         builder: EasyLoading.init(),
       ),
