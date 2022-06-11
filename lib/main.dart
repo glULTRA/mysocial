@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mysocial/models/user.dart';
 import 'package:mysocial/screens/authenticate/authenticate.dart';
 import 'package:mysocial/screens/wrapper.dart';
@@ -10,13 +11,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Options are for web.
   await Firebase.initializeApp(
-    //name: "mysocial",
-    //options: FirebaseOptions(
-    //  apiKey: "AIzaSyBOGw6Ryp4_HDe94TKhcztkMAMQNu6xAwc",
-    //  appId: "1:202413675237:android:d0c9688ae23f4798bb3a0c",
-    //  messagingSenderId: "202413675237",
-    //  projectId: "mysocial-c3703",
-    //),
+    name: "mysocial",
+    options: FirebaseOptions(
+      apiKey: "AIzaSyBOGw6Ryp4_HDe94TKhcztkMAMQNu6xAwc",
+      appId: "1:202413675237:android:d0c9688ae23f4798bb3a0c",
+      messagingSenderId: "202413675237",
+      projectId: "mysocial-c3703",
+    ),
   );
   runApp(const MyApp());
 }
@@ -45,6 +46,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         // Return home or authenticate
         home: Wrapper(),
+        builder: EasyLoading.init(),
       ),
     );
   }

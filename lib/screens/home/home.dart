@@ -30,7 +30,9 @@ class _HomeState extends State<Home> {
       ),
       body: Center(
         child: RaisedButton(
-          onPressed: () async {},
+          onPressed: () async {
+            await _auth.signOut();
+          },
         ),
       ),
     );

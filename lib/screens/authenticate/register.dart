@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mysocial/certs/terms_and_conditions.dart';
 import 'package:mysocial/models/user.dart';
 import 'package:mysocial/screens/authenticate/login.dart';
@@ -35,6 +36,7 @@ class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool isValidate = true;
+
   Future<String>? data;
 
   @override
@@ -287,7 +289,8 @@ class _RegisterState extends State<Register> {
                                                     });
                                                   } else {
                                                     print("Should get back!");
-
+                                                    EasyLoading.showSuccess(
+                                                        "Registered Successful!");
                                                     navigator.pop();
                                                   }
                                                 }
@@ -328,7 +331,7 @@ class _RegisterState extends State<Register> {
                                       SizedBox(height: 5.0),
                                       TextButton(
                                         onPressed: () async {
-                                          await Navigator.push(
+                                          Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) => Login(),

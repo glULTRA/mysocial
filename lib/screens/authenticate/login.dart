@@ -3,9 +3,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:mysocial/screens/authenticate/register.dart';
@@ -32,9 +34,13 @@ class _LoginState extends State<Login> {
   var value = false;
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool isSuccess = false;
   bool loading = false;
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  @override
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -197,16 +203,8 @@ class _LoginState extends State<Login> {
                                       ),
                                       RaisedButton(
                                         onPressed: () async {
-                                          //showDialog(
-                                          //  context: context,
-                                          //  builder: (BuildContext context) {
-                                          //    return AlertDialog(
-                                          //      title: Text("helloworld"),
-                                          //      content: Text(
-                                          //          "username : ${email.text}\npassword : ${password.text}"),
-                                          //    );
-                                          //  },
-                                          //);
+                                          final navigator =
+                                              Navigator.of(context);
 
                                           if (_formKey.currentState!
                                               .validate()) {
@@ -216,6 +214,17 @@ class _LoginState extends State<Login> {
                                                     email: email.text,
                                                     password: password.text);
                                             if (result == null) {
+                                              setState(() => loading = false);
+                                              EasyLoading.showError(
+                                                  'Failed to login!');
+                                            } else {
+                                              EasyLoading.showSuccess(
+                                                  'Great Success!');
+
+                                              await Future.delayed(
+                                                  const Duration(seconds: 4),
+                                                  () {});
+
                                               setState(() => loading = false);
                                             }
                                           }
