@@ -154,50 +154,39 @@ class _LoginState extends State<Login> {
                                   ),
                                   Row(
                                     children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Wrap(
-                                          crossAxisAlignment:
-                                              WrapCrossAlignment.center,
-                                          children: [
-                                            Checkbox(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(3.0),
-                                              ),
-                                              side: MaterialStateBorderSide
-                                                  .resolveWith(
-                                                (states) => BorderSide(
-                                                    width: 1.0,
-                                                    color: Colors.red),
-                                              ),
-                                              value: this.value,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  this.value = value!;
-                                                });
-                                              },
-                                              activeColor: Colors.pink,
-                                              checkColor: Colors.white,
-
-                                              // fillColor: Fill,
-                                            ),
-                                            Text("Remember me"),
-                                          ],
+                                      Checkbox(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(3.0),
                                         ),
-                                      ),
-                                      // Making it responsive
+                                        side:
+                                            MaterialStateBorderSide.resolveWith(
+                                          (states) => BorderSide(
+                                              width: 1.0, color: Colors.red),
+                                        ),
+                                        value: this.value,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            this.value = value!;
+                                          });
+                                        },
+                                        activeColor: Colors.pink,
+                                        checkColor: Colors.white,
 
+                                        // fillColor: Fill,
+                                      ),
+                                      Text("Remember me"),
                                       Expanded(
                                         flex: 1,
-                                        child: TextButton(
-                                          onPressed: () {},
-                                          child: Text(
-                                            "Forgot Password ?",
-                                            style: TextStyle(
-                                              color: Colors.pink[500],
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                        child: SizedBox(),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {},
+                                        child: Text(
+                                          "Forgot Password ?",
+                                          style: TextStyle(
+                                            color: Colors.pink[500],
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
