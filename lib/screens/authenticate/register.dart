@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:auth_buttons/auth_buttons.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -262,10 +263,14 @@ class _RegisterState extends State<Register> {
                                       Row(
                                         children: [
                                           Expanded(flex: 3, child: SizedBox()),
-                                          SignInButton(
-                                            Buttons.Facebook,
-                                            mini: true,
-                                            elevation: 10.0,
+                                          FacebookAuthButton(
+                                            // Buttons.Facebook,
+                                            // mini: true,
+                                            // elevation: 10.0,
+                                            style: AuthButtonStyle(
+                                              buttonType: AuthButtonType.icon,
+                                              iconType: AuthIconType.outlined,
+                                            ),
                                             onPressed: () {},
                                           ),
                                           Expanded(flex: 1, child: SizedBox()),
@@ -294,11 +299,15 @@ class _RegisterState extends State<Register> {
                                             ),
                                           ),
                                           Expanded(flex: 1, child: SizedBox()),
-                                          IconButton(
-                                            icon: Icon(
-                                              EvaIcons.email,
-                                              color: Colors.red,
-                                              size: 40,
+                                          GoogleAuthButton(
+                                            //icon: Icon(
+                                            //  EvaIcons.email,
+                                            //  color: Colors.red,
+                                            //  size: 40,
+                                            //),
+                                            style: AuthButtonStyle(
+                                              buttonType: AuthButtonType.icon,
+                                              iconType: AuthIconType.outlined,
                                             ),
                                             onPressed: () async {
                                               //await _auth
