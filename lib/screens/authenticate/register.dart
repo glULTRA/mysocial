@@ -305,8 +305,32 @@ class _RegisterState extends State<Register> {
                                               //    .signInWithGitHub(context);
                                               final navigator =
                                                   Navigator.of(context);
-                                              await _auth.signInWithGoogle();
-                                              navigator.pop();
+
+                                              MegaUser result = MegaUser();
+                                              try {
+                                                setState(() {
+                                                  loading = true;
+                                                });
+                                                result = await _auth
+                                                    .signInWithGoogle();
+                                              } catch (e) {
+                                                setState(() {
+                                                  loading = false;
+                                                });
+                                              }
+
+                                              if (!result.uid.isEmpty) {
+                                                print("AM i here sir? ");
+                                                await EasyLoading.showSuccess(
+                                                    'Logged in Successfully!');
+                                                navigator.pop();
+                                              } else {
+                                                setState(() {
+                                                  loading = false;
+                                                });
+                                                EasyLoading.showInfo(
+                                                    'None account chosen!');
+                                              }
                                             },
                                           ),
                                           Expanded(flex: 3, child: SizedBox()),
@@ -315,11 +339,14 @@ class _RegisterState extends State<Register> {
                                       SizedBox(height: 5.0),
                                       TextButton(
                                         onPressed: () async {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => Login(),
-                                              ));
+                                          final nav = Navigator.of(context);
+                                          nav.pop();
+                                          //await Navigator.push(
+                                          //    context,
+                                          //    MaterialPageRoute(
+                                          //      builder: (context) =>
+                                          //          const Login(),
+                                          //    ));
                                         },
                                         child: Text(
                                           "I'm already a member",
@@ -358,10 +385,13 @@ class _RegisterState extends State<Register> {
           isValidate = true;
           mustBeAgree = false;
         });
-        dynamic result = await _auth.registerWithEmailAndPassword(
-          email: email.text,
-          password: password.text,
-        );
+        MegaUser? result = MegaUser();
+        try {
+          result = await _auth.registerWithEmailAndPassword(
+              email: email.text, password: password.text);
+        } catch (e) {
+          print(e);
+        }
         if (result == null) {
           // show the error.
           setState(() {

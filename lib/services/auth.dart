@@ -117,7 +117,7 @@ class AuthService {
   Future signOut() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signOut();
-
+      print('do go after this ?');
       return await _auth.signOut();
     } catch (e) {
       return null;

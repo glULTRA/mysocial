@@ -230,11 +230,11 @@ class _LoginState extends State<Login> {
                                           color: Colors.red,
                                         ),
                                         onPressed: () async {
+                                          setState(() {
+                                            loading = true;
+                                          });
                                           MegaUser result = MegaUser();
                                           try {
-                                            setState(() {
-                                              loading = true;
-                                            });
                                             result =
                                                 await _auth.signInWithGoogle();
                                           } catch (e) {
@@ -243,7 +243,7 @@ class _LoginState extends State<Login> {
                                             });
                                           }
 
-                                          if (!result.uid.isEmpty) {
+                                          if (result != null) {
                                             print("AM i here sir? ");
                                             await EasyLoading.showSuccess(
                                                 'Logged in Successfully!');
@@ -251,7 +251,7 @@ class _LoginState extends State<Login> {
                                             setState(() {
                                               loading = false;
                                             });
-                                            EasyLoading.showSuccess(
+                                            EasyLoading.showInfo(
                                                 'None account chosen!');
                                           }
                                         },
@@ -262,12 +262,12 @@ class _LoginState extends State<Login> {
                                   const SizedBox(height: 4.0),
                                   const Text("or"),
                                   TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
+                                    onPressed: () async {
+                                      await Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  Register()));
+                                                  const Register()));
                                       //Navigator.of(context).push(
                                       //  page_route_animated(
                                       //    pageBuilder: (context, animation,
@@ -304,15 +304,20 @@ class _LoginState extends State<Login> {
 
     if (_formKey.currentState!.validate()) {
       setState(() => loading = true);
-      dynamic result = await _auth.signInWithEmailAndPassword(
-          email: email.text, password: password.text);
+      MegaUser? result = MegaUser();
+      try {
+        result = await _auth.signInWithEmailAndPassword(
+            email: email.text, password: password.text);
+      } catch (e) {
+        print(e);
+      }
+
       if (result == null) {
         setState(() => loading = false);
         EasyLoading.showError('Failed to login!');
       } else {
         //await EasyLoading.show(
         //    status: "Loading");
-
         EasyLoading.showSuccess('Logged in Successfully!');
 
         setState(() => loading = false);
