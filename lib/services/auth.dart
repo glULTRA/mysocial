@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 //import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mysocial/models/user.dart';
+import 'package:mysocial/services/database.dart';
 import 'package:twitter_login/twitter_login.dart';
 
 class AuthService {
@@ -28,8 +29,8 @@ class AuthService {
   Future registerWithEmailAndPassword({
     required String email,
     required String password,
-    String? username,
-    String? fullname,
+    required String? username,
+    required String? fullname,
   }) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -38,8 +39,12 @@ class AuthService {
       );
       // Get a user
       User? user = result.user;
-      // Add username/fullname to database.
-      // ....
+      // 1- Check if user is on database exit ?
+      
+      // 2- Add username/fullname to database.
+      await DatabaseService(uid: user?.uid)
+          .updateUserData(fullname, username);
+      
       // Return Mega User id.
       return _userFromFireBase(user);
     } catch (e) {
@@ -100,7 +105,8 @@ class AuthService {
     final twitterLogin = TwitterLogin(
         apiKey: '<your consumer key>',
         apiSecretKey: ' <your consumer secret>',
-        redirectURI: 'https://mysocial-c3703.firebaseapp.com/__/auth/handler://');
+        redirectURI:
+            'https://mysocial-c3703.firebaseapp.com/__/auth/handler://');
 
     // Trigger the sign-in flow
     final authResult = await twitterLogin.login();
