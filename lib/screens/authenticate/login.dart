@@ -191,7 +191,7 @@ class _LoginState extends State<Login> {
                                   Row(
                                     children: [
                                       Expanded(flex: 3, child: SizedBox()),
-                                      FacebookAuthButton(
+                                      TwitterAuthButton(
                                         // Buttons.Facebook,
                                         // mini: true,
                                         // elevation: 10.0,
@@ -199,7 +199,32 @@ class _LoginState extends State<Login> {
                                           buttonType: AuthButtonType.icon,
                                           iconType: AuthIconType.outlined,
                                         ),
-                                        onPressed: () async {},
+                                        onPressed: () async {
+                                          //setState(() {
+                                          //  loading = true;
+                                          //});
+                                        //  MegaUser? result = MegaUser();
+                                        //  try {
+                                        //    //result = await _auth
+                                        //    //    .signInWithFacebook();
+                                        //  } catch (e) {
+                                        //    setState(() {
+                                        //      loading = false;
+                                        //    });
+                                        //  }
+
+                                        //  if (result != null) {
+                                        //    print("AM i here sir? ");
+                                        //    await EasyLoading.showSuccess(
+                                        //        'Logged in Successfully!');
+                                        //  } else {
+                                        //    setState(() {
+                                        //      loading = false;
+                                        //    });
+                                        //    EasyLoading.showInfo(
+                                        //        'None account chosen!');
+                                        //  }
+                                        },
                                       ),
                                       Expanded(flex: 1, child: SizedBox()),
                                       RaisedButton(
@@ -253,7 +278,7 @@ class _LoginState extends State<Login> {
                                             });
                                           }
 
-                                          if (result != null) {
+                                          if (!result.uid.isEmpty) {
                                             print("AM i here sir? ");
                                             await EasyLoading.showSuccess(
                                                 'Logged in Successfully!');
@@ -261,7 +286,7 @@ class _LoginState extends State<Login> {
                                             setState(() {
                                               loading = false;
                                             });
-                                            EasyLoading.showInfo(
+                                            await EasyLoading.showInfo(
                                                 'None account chosen!');
                                           }
                                         },

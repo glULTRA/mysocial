@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+//import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mysocial/models/user.dart';
+import 'package:twitter_login/twitter_login.dart';
 
 class AuthService {
   // Firbase authentication object.
@@ -71,6 +73,52 @@ class AuthService {
   }
 
   // Sign in with Facebook.
+  // Future<MegaUser?> signInWithFacebook() async {
+  //   try {
+  //     // Trigger the sign-in flow
+  //     final LoginResult loginResult = await FacebookAuth.instance.login();
+
+  //     // Create a credential from the access token
+  //     final OAuthCredential facebookAuthCredential =
+  //         FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+  //     // Once signed in, return the UserCredential
+  //     final UserCredential result =
+  //         _auth.signInWithCredential(facebookAuthCredential) as UserCredential;
+
+  //     return _userFromFireBase(result.user);
+  //   } catch (e) {
+  //     print("Error::Login::Facebook::$e");
+  //     return null;
+  //   }
+  // }
+
+  // Sign in with twitter.
+
+  Future<MegaUser?> signInWithTwitter() async {
+    // Create a TwitterLogin instance
+    final twitterLogin = TwitterLogin(
+        apiKey: '<your consumer key>',
+        apiSecretKey: ' <your consumer secret>',
+        redirectURI: 'https://mysocial-c3703.firebaseapp.com/__/auth/handler://');
+
+    // Trigger the sign-in flow
+    final authResult = await twitterLogin.login();
+
+    // Create a credential from the access token
+    final twitterAuthCredential = TwitterAuthProvider.credential(
+      accessToken: authResult.authToken!,
+      secret: authResult.authTokenSecret!,
+    );
+
+    // Get result instance.
+    UserCredential? result =
+        await FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
+
+    // Once signed in, return the UserCredential
+    return _userFromFireBase(result.user);
+  }
+
   // Sign in with Github.
   // Sign in with Gmail.
   Future signInWithGoogle() async {

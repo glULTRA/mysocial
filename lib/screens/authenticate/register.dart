@@ -263,7 +263,7 @@ class _RegisterState extends State<Register> {
                                       Row(
                                         children: [
                                           Expanded(flex: 3, child: SizedBox()),
-                                          FacebookAuthButton(
+                                          TwitterAuthButton(
                                             // Buttons.Facebook,
                                             // mini: true,
                                             // elevation: 10.0,
@@ -271,7 +271,9 @@ class _RegisterState extends State<Register> {
                                               buttonType: AuthButtonType.icon,
                                               iconType: AuthIconType.outlined,
                                             ),
-                                            onPressed: () {},
+                                            onPressed: () async {
+                                              //await _auth.signInWithFacebook();
+                                            },
                                           ),
                                           Expanded(flex: 1, child: SizedBox()),
                                           RaisedButton(
